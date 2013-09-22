@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.pmtoam.gprsm"
+    android:versionCode="2"
+    android:versionName="2.1.0" >
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name="net.pmtoam.gprsm.MainActivity"
+            android:configChanges="orientation|keyboardHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="net.pmtoam.gprsm.service.CoreService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="net.pmtoam.gprsm.CORE_SERVICE" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="net.pmtoam.gprsm.receiver.BootCompletedReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
